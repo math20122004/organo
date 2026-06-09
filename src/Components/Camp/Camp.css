@@ -1,14 +1,14 @@
-.text-camp {
+.camp {
     margin: 24px 0;
 }
 
-.text-camp label {
+.camp label {
     display: block;
     margin-bottom: 8px;
     font-size: 24px;
 }
 
-.text-camp input {
+.camp input {
     background-color: #FFF;
     box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.06);
     width: 100%;
@@ -16,4 +16,10 @@
     font-size: 24px;
     padding: 24px;
     box-sizing: border-box;
+}
+
+.camp-color input {
+    padding: 5px 24px;
+    width: 20%;
+    height: 50px;
 }

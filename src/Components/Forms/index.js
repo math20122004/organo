@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import Button from '../Button'
 import SuspenseList from '../SuspenseList'
-import TextCamp from '../TextCamp'
+import TextCamp from '../Camp'
 import './Forms.css'
+import { v4 as uuidv4 } from 'uuid'
 
 const Forms = (props) => {
 
@@ -10,14 +11,18 @@ const Forms = (props) => {
     const [position, setPosition] = useState('')
     const [image, setImage] = useState('')
     const [team, setTeam] = useState('')
+    const [teamName, setTeamName] = useState('')
+    const [teamColor, setTeamColor] = useState('')
 
     const onSave = (event) => {
         event.preventDefault()       
-        props.onCadastredColaborator({
+        props.onCadastred({
+            id: uuidv4(),
             name,
             position,
             image,
-            team
+            team,
+            favorite: false
         })
         setName('')
         setPosition('')
@@ -58,6 +63,32 @@ const Forms = (props) => {
                 />
                 <Button>
                     Criar Card
+                </Button>
+            </form>
+            <form onSubmit={(event) => {
+                event.preventDefault()
+                props.onCadastredTeam({ name: teamName, color: teamColor })
+                setTeamName('')
+                setTeamColor('')
+                }}>
+                <h2>Preencha os dados para criar um novo time.</h2>
+                <TextCamp
+                    required
+                    label='Nome'
+                    placeholder='Digite o nome do time'
+                    value={teamName}
+                    onDigited={value => setTeamName(value)}
+                />
+                <TextCamp 
+                    required
+                    label='Cor'
+                    placeholder='Digite a cor do time'
+                    typeCamp='color'
+                    value={teamColor}
+                    onDigited={value => setTeamColor(value)}
+                />
+                <Button>
+                    Criar novo time
                 </Button>
             </form>
         </section>
